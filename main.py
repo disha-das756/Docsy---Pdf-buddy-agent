@@ -1,10 +1,11 @@
-from fastapi import FastAPI, UploadFile, File, Form   # <-- added Form
+from fastapi import FastAPI, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
 from ingest import ingest_pdf
 from graph import graph
 import os
+import uvicorn
 from storage import upload_to_supabase
-from memory import add_message, get_chat, load_chats, save_pdf_url  # <-- added save_pdf_url
+from memory import add_message, get_chat, load_chats, save_pdf_url
 import shutil
 
 app = FastAPI()
@@ -21,7 +22,7 @@ app.add_middleware(
 @app.post("/upload")
 async def upload_pdf(
     file: UploadFile = File(...),
-    chat_id: str = Form(...)        # <-- receive chat_id from frontend
+    chat_id: str = Form(...)
 ):
     temp_path = f"temp_{file.filename}"
 
@@ -29,13 +30,8 @@ async def upload_pdf(
         shutil.copyfileobj(file.file, buffer)
 
     try:
-        # Send to Pinecone for RAG
         ingest_pdf(temp_path)
-
-        # Send to Supabase for UI display
         supabase_url = upload_to_supabase(temp_path, file.filename)
-
-        # Save PDF URL to MongoDB against this chat session  <-- NEW
         save_pdf_url(chat_id, supabase_url)
 
         if os.path.exists(temp_path):
@@ -67,7 +63,6 @@ async def chat(data: dict):
     })
 
     answer = result.get("answer", "No response")
-
     add_message(chat_id, "assistant", answer)
 
     return {"answer": answer}
@@ -76,3 +71,7 @@ async def chat(data: dict):
 @app.get("/chats")
 async def get_all_chats():
     return load_chats()
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8001))
+    uvicorn.run("main:app", host="0.0.0.0", port=port)
