@@ -1,0 +1,14 @@
+streamlit
+langchain
+langchain-community
+langchain-text-splitters
+langchain-huggingface
+langchain-pinecone
+langchain-google-genai
+langgraph
+pinecone
+sentence-transformers
+pypdf
+python-dotenv
+fastapi
+uvicorn

@@ -1,0 +1,20 @@
+cat > .gitignore << 'EOF'
+# Environment
+.env
+myenv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Temp files
+temp_*.pdf
+
+# Node
+node_modules/
+dist/
+.vite/
+
+# OS
+.DS_Store
+Thumbs.db
+EOF
