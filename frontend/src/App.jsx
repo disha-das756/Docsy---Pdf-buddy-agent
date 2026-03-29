@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 
-const API_BASE = "http://127.0.0.1:8001";
+const API_BASE = "https://docsy-pdf-buddy-agent.onrender.com"      // for local"http://127.0.0.1:8001";
 
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap');
