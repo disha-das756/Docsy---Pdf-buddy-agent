@@ -12,3 +12,6 @@ pypdf
 python-dotenv
 fastapi
 uvicorn
+pymongo
+supabase
+python-multipart
