@@ -25,11 +25,11 @@ llm = ChatGoogleGenerativeAI(
 )
 
 pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
-index = pc.Index("ragchatbot")
+index = pc.Index("docsy")
 
 vectorstore = PineconeVectorStore(
     index=index,
-    embedding=get_embeddings
+    embedding=get_embeddings()
 )
 
 retriever = vectorstore.as_retriever(search_kwargs={"k": 3})

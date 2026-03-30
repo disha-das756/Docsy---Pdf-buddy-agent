@@ -27,7 +27,7 @@ def ingest_pdf(file_path):
         texts=texts,
         embedding=get_embeddings(),
         metadatas=metadatas,
-        index_name="ragchatbot"
+        index_name="docsy"
     )
 
     print("✅ Data stored in Pinecone")
