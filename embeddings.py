@@ -1,19 +1,12 @@
-# from langchain_huggingface import HuggingFaceEmbeddings
-
-# embeddings = HuggingFaceEmbeddings(
-#     model_name="sentence-transformers/all-MiniLM-L6-v2"
-# )
-
-
-from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_pinecone import PineconeEmbeddings
 
 _embeddings = None
 
 def get_embeddings():
     global _embeddings
     if _embeddings is None:
-        print("Loading embeddings model...")
-        _embeddings = HuggingFaceEmbeddings(
-            model_name="sentence-transformers/all-MiniLM-L6-v2"
+        print("Loading Pinecone embedding model...")
+        _embeddings = PineconeEmbeddings(
+            model="llama-text-embed-v2"  
         )
     return _embeddings
