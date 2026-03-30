@@ -29,7 +29,7 @@ index = pc.Index("ragchatbot")
 
 vectorstore = PineconeVectorStore(
     index=index,
-    embedding=embeddings
+    embedding=get_embeddings
 )
 
 retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
