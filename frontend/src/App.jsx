@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import "./index.css";
 
-const API_BASE = "https://docsy-pdf-buddy-agent.onrender.com";
+const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8001";
 
 export default function App() {
   const [chatId, setChatId] = useState(`chat-${Date.now()}`);
