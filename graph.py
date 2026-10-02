@@ -1,7 +1,7 @@
 
 
 from langgraph.graph import StateGraph, END
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_groq import ChatGroq
 from langchain_pinecone import PineconeVectorStore
 from pinecone import Pinecone
 from typing import TypedDict, List, Any
@@ -18,10 +18,10 @@ class State(TypedDict):
     answer: str
     history: str
 
-llm = ChatGoogleGenerativeAI(
-    model="gemini-2.5-flash",
+llm = ChatGroq(
+    model="llama-3.3-70b-versatile",
     temperature=0.7,
-    google_api_key=os.getenv("GOOGLE_API_KEY")
+    api_key=os.getenv("GROQ_API_KEY")
 )
 
 pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
