@@ -19,7 +19,7 @@ class State(TypedDict):
     history: str
 
 llm = ChatGroq(
-    model=os.getenv("openai/gpt-oss-120b"),
+    model=os.getenv("GROQ_MODEL") or "openai/gpt-oss-120b",
     temperature=0.7,
     api_key=os.getenv("GROQ_API_KEY")
 )
