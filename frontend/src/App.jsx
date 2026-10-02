@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import "./index.css";
 
-const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8001";
+const API_BASE = import.meta.env.abcd;
 
 export default function App() {
   const [chatId, setChatId] = useState(`chat-${Date.now()}`);
